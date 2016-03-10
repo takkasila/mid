@@ -6,6 +6,9 @@ public class SimpleMove : MonoBehaviour {
     Rigidbody2D selfRb;
     public float moveForce = 10;
     public GameObject walkParticle;
+    public float particleDistInterval = 0.5f;
+    float pDistIntCounter;
+    Vector3 oldPos;
 	void Start () {
         selfRb = GetComponent<Rigidbody2D>();
 	}
@@ -37,11 +40,39 @@ public class SimpleMove : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "StaticMesh")
-            Instantiate(walkParticle, transform.position + Vector3.down*.2f, Quaternion.identity);
+        foreach(ContactPoint2D contact in col.contacts)
+        {
+            if(col.gameObject.tag == "StaticMesh")
+                Instantiate(walkParticle, contact.point, Quaternion.identity);
+        }
+        pDistIntCounter = 0;
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if(selfRb.IsSleeping())
+        {
+            pDistIntCounter = 0;
+            oldPos = transform.position;
+        }
+        else
+        {
+            pDistIntCounter += Mathf.Abs(Vector3.Distance(oldPos, transform.position));
+            oldPos = transform.position;
+            if(pDistIntCounter>=particleDistInterval)
+            {
+                foreach (ContactPoint2D contact in col.contacts)
+                {
+                    if (col.gameObject.tag == "StaticMesh")
+                        Instantiate(walkParticle, contact.point, Quaternion.identity);
+                }
+                pDistIntCounter = 0;
+            }
+        }
     }
 }
