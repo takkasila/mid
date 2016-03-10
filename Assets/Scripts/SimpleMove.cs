@@ -5,6 +5,7 @@ public class SimpleMove : MonoBehaviour {
 
     Rigidbody2D selfRb;
     public float moveForce = 10;
+    public GameObject walkParticle;
 	void Start () {
         selfRb = GetComponent<Rigidbody2D>();
 	}
@@ -36,5 +37,11 @@ public class SimpleMove : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "StaticMesh")
+            Instantiate(walkParticle, transform.position + Vector3.down*.2f, Quaternion.identity);
     }
 }
