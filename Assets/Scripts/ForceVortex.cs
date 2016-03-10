@@ -19,7 +19,11 @@ public class ForceVortex : MonoBehaviour {
         Vector3 forceDir = col.gameObject.transform.position - transform.position;
         float totalForce = ForceAtCenter;
         if (GravityLike)
-            totalForce /= Mathf.Pow(forceDir.magnitude, 2);
+        {
+            if (forceDir.magnitude > 1)
+                totalForce /= Mathf.Pow(forceDir.magnitude, 2);
+            
+        }
         col.gameObject.GetComponent<ExternalForce>().AddForce(forceDir, totalForce);
     }
 }
