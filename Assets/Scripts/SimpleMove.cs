@@ -4,7 +4,7 @@ using System.Collections;
 public class SimpleMove : MonoBehaviour {
 
     Rigidbody2D selfRb;
-    public float moveForce = 10;
+    public Vector2 moveForce;
     public GameObject walkParticle;
     public float particleDistInterval = 0.5f;
     float pDistIntCounter;
@@ -21,19 +21,19 @@ public class SimpleMove : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            selfRb.AddForce(Vector3.left * moveForce, ForceMode2D.Force);
+            selfRb.AddForce(Vector3.left * moveForce.x, ForceMode2D.Force);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            selfRb.AddForce(Vector3.right * moveForce, ForceMode2D.Force);
+            selfRb.AddForce(Vector3.right * moveForce.x, ForceMode2D.Force);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            selfRb.AddForce(Vector3.up * moveForce, ForceMode2D.Force);
+            selfRb.AddForce(Vector3.up * moveForce.y, ForceMode2D.Force);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            selfRb.AddForce(Vector3.down * moveForce, ForceMode2D.Force);
+            selfRb.AddForce(Vector3.down * moveForce.y, ForceMode2D.Force);
         }
 
         if(transform.position.y < -30)
