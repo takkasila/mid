@@ -9,7 +9,7 @@ public class SelfShadow : MonoBehaviour {
 
     void Start()
     {
-        if(!gameObject.transform.parent)
+        if(!gameObject.transform.parent || gameObject.transform.parent.tag !="StaticMesh")
         { 
             shadowObj = (GameObject)Instantiate(gameObject, Vector3.zero, Quaternion.identity);
             shadowObj.transform.parent = gameObject.transform;
