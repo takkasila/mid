@@ -35,12 +35,6 @@ public class SimpleMove : MonoBehaviour {
         {
             selfRb.AddForce(Vector3.down * moveForce.y, ForceMode2D.Force);
         }
-
-        if(transform.position.y < -30)
-        {
-            Destroy(this.gameObject);
-        }
-
     }
 
     void OnCollisionEnter2D(Collision2D col)
