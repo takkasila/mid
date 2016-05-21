@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEditor;
+using System.Collections;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(FieldCounter))]
 public class FieldCounterEditor : Editor
 {
-
     public override void OnInspectorGUI()
     {
         FieldCounter editor = (FieldCounter)target;

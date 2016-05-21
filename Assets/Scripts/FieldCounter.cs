@@ -10,10 +10,6 @@ public class FieldCounter : MonoBehaviour {
 
     public int counter = 0;
 
-    void Start()
-    {
-
-    }
 	void OnTriggerEnter2D(Collider2D col)
     {
         counter++;

@@ -9,7 +9,11 @@ public class SelfShadow : MonoBehaviour {
 
     void Start()
     {
-        if(!gameObject.transform.parent || gameObject.transform.parent.tag !="StaticMesh")
+        if (gameObject.transform.parent)
+            return;
+
+        string tag = gameObject.transform.parent.tag;
+        if(tag != "StaticMesh" && tag != "ForceField" && tag != "BG")
         { 
             shadowObj = (GameObject)Instantiate(gameObject, Vector3.zero, Quaternion.identity);
             shadowObj.transform.parent = gameObject.transform;

@@ -13,6 +13,7 @@ public class ColliderToMesh : MonoBehaviour
         pointCount = pc2.GetTotalPointCount();
 
         MeshFilter mf = GetComponent<MeshFilter>();
+
         Mesh mesh = new Mesh();
         Vector2[] points = pc2.points;
         Vector3[] vertices = new Vector3[pointCount];
@@ -25,6 +26,7 @@ public class ColliderToMesh : MonoBehaviour
         int[] triangles = tr.Triangulate();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+
         mf.mesh = mesh;
     }
 }
