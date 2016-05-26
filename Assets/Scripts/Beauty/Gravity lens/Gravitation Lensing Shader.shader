@@ -9,6 +9,7 @@ SubShader {
         Fog { Mode off }
                 
         CGPROGRAM
+		#pragma target 3.0
         #pragma vertex vert
         #pragma fragment frag
         #pragma fragmentoption ARB_precision_hint_fastest 

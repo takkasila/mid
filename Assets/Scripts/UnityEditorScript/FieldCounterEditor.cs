@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,3 +23,4 @@ public class FieldCounterEditor : Editor
         EditorGUILayout.TextArea("Count: " + editor.counter.ToString());
     }
 }
+#endif

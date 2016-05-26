@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExternalForce : MonoBehaviour {
+public class ReceiveExternalForce : MonoBehaviour {
 
     Rigidbody2D selfRb;
     void Start()

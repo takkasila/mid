@@ -45,9 +45,8 @@ public class DrawGizmoCollider : MonoBehaviour
             colors[i] = col;
         }
         mesh.colors = colors;
-
-        Graphics.DrawMeshNow(mesh, transform.position, Quaternion.identity);
-
+        //mat.SetPass(0);
+        //Graphics.DrawMeshNow(mesh, transform.position, Quaternion.identity);
         DestroyImmediate(mesh);
     }
 }

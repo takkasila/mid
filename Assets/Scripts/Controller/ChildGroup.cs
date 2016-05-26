@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MotherController : MonoBehaviour {
+public class ChildGroup : MonoBehaviour {
 
     public GameObject child;
     float offsetSpawn;
@@ -34,7 +34,7 @@ public class MotherController : MonoBehaviour {
         
         for(int f1=0;f1<gs.Length;f1++)
         {
-            if(gs[f1].name == "Child(Clone)" && (!gs[f1].transform.parent || gs[f1].transform.parent != this.gameObject))
+            if(gs[f1].name == "Child" && (!gs[f1].transform.parent || gs[f1].transform.parent != this.gameObject))
             {
                 if(Mathf.Abs(Vector3.Distance(transform.position, gs[f1].transform.position))<=searchRadius)
                 {

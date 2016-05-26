@@ -14,7 +14,7 @@ public class ForceField : MonoBehaviour {
     {
         if(col.tag=="Movable")
         {
-            col.gameObject.GetComponent<ExternalForce>().AddForce(ForceDir, ForceAmount);
+            col.gameObject.GetComponent<ReceiveExternalForce>().AddForce(ForceDir, ForceAmount);
         }
     }
 
