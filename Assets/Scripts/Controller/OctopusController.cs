@@ -1,21 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class OctopusController : MonoBehaviour {
+public class OctopusController : NetworkBehaviour {
 
     public HingeJoint2D leftArm, rightArm;
     public float leftArmSpeed, rightArmSpeed;
     JointMotor2D leftMotor, rightMotor;
-	// Use this for initialization
 	void Start () {
+
         leftMotor = leftArm.motor;
         rightMotor = rightArm.motor;
 	}
-	
-	// Update is called once per frame
+
+    public override void OnStartLocalPlayer()
+    {
+        Camera.main.GetComponent<CamFollowMother>().mother = gameObject;
+    }
+
 	void Update () {
+        if (!isLocalPlayer)
+            return;
         ArmMotor();
-	
+        for(int f1=0; f1<transform.childCount; f1++)
+        {
+            transform.GetChild(f1).SendMessage("localUpdate");
+        }
 	}
 
     void ArmMotor()

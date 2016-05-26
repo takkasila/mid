@@ -11,11 +11,9 @@ public class HingJointGrab : MonoBehaviour
         grabJoint = gameObject.AddComponent<HingeJoint2D>();
         grabJoint.enabled = false;
     }
-    void Update()
+    void localUpdate()
     {
-
         CheckInput();
-
     }
 
     void CheckInput()

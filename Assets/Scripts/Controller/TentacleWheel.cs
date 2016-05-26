@@ -22,8 +22,9 @@ public class TentacleWheel : MonoBehaviour {
         joint = GetComponent<HingeJoint2D>();
         moter = joint.motor;
 	}
-	
-	void Update () {
+
+    void localUpdate()
+    {
         MoveUpdate();
 	}
 
