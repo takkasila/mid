@@ -6,7 +6,18 @@ using System.Collections;
 [RequireComponent(typeof(MeshRenderer))]
 public class ColliderToMesh : MonoBehaviour
 {
-    void Start()
+    bool init = false;
+
+    void Update()
+    {
+        if(!init)
+        {
+            init = true;
+            createMesh();
+        }
+
+    }
+    void createMesh()
     {
         int pointCount = 0;
         PolygonCollider2D pc2 = gameObject.GetComponent<PolygonCollider2D>();

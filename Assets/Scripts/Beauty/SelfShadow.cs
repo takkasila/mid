@@ -9,21 +9,15 @@ public class SelfShadow : MonoBehaviour {
 
     void Start()
     {
-        if (gameObject.transform.parent)
-            return;
+        shadowObj = (GameObject)Instantiate(gameObject, Vector3.zero, Quaternion.identity);
+        shadowObj.transform.parent = gameObject.transform;
+        shadowObj.transform.localPosition = new Vector3(offset.x, offset.y, 0.5f);
 
-        string tag = gameObject.transform.parent.tag;
-        if(tag != "StaticMesh" && tag != "ForceField" && tag != "BG")
-        { 
-            shadowObj = (GameObject)Instantiate(gameObject, Vector3.zero, Quaternion.identity);
-            shadowObj.transform.parent = gameObject.transform;
-            shadowObj.transform.localPosition = new Vector3(offset.x, offset.y, 0.5f);
+        Renderer rendr = shadowObj.GetComponent<Renderer>();
+        rendr.material = shadowMat;
 
-            Renderer rendr = shadowObj.GetComponent<Renderer>();
-            rendr.material = shadowMat;
-
-            PolygonCollider2D col = shadowObj.GetComponent<PolygonCollider2D>();
-            col.enabled = false;
-        }
+        PolygonCollider2D col = shadowObj.GetComponent<PolygonCollider2D>();
+        col.enabled = false;
+        shadowObj.GetComponent<SelfShadow>().enabled = false;
     }
 }
