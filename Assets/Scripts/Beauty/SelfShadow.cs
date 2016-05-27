@@ -12,6 +12,7 @@ public class SelfShadow : MonoBehaviour {
         shadowObj = (GameObject)Instantiate(gameObject, Vector3.zero, Quaternion.identity);
         shadowObj.transform.parent = gameObject.transform;
         shadowObj.transform.localPosition = new Vector3(offset.x, offset.y, 0.5f);
+        shadowObj.transform.localScale = new Vector3(1, 1, 1);
 
         Renderer rendr = shadowObj.GetComponent<Renderer>();
         rendr.material = shadowMat;

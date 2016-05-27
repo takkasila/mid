@@ -13,6 +13,7 @@ public class OctopusController : NetworkBehaviour {
     public string CustomName;
     [SyncVar]
     public Color BodyColor;
+    public GameObject Cat;
     public List<SpriteRenderer> bodyImages;
 	void Start () {
 
@@ -37,6 +38,12 @@ public class OctopusController : NetworkBehaviour {
             return;
 
         ArmMotor();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CmdSpawnCat();
+        }
+
         for(int f1=0; f1<transform.childCount; f1++)
         {
             transform.GetChild(f1).SendMessage("localUpdate", SendMessageOptions.DontRequireReceiver);
@@ -73,5 +80,13 @@ public class OctopusController : NetworkBehaviour {
             rightMotor.motorSpeed = rightArmSpeed;
             rightArm.motor = rightMotor;
         }
+    }
+
+    [Command]
+    void CmdSpawnCat()
+    {
+        GameObject cat = (GameObject)Instantiate(Cat);
+        cat.transform.position = Vector3.zero;
+        NetworkServer.Spawn(cat);
     }
 }
