@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class CatDisposer : NetworkBehaviour {
 
     public GameObject cat;
-    public float DisposeInterval;
+    public float DisposeInterval = 10;
     float counter;
 	void Start () {
         counter = DisposeInterval;
@@ -17,10 +18,16 @@ public class CatDisposer : NetworkBehaviour {
         if(counter <=0)
         {
             counter = DisposeInterval;
-            GameObject newCat = (GameObject)Instantiate(cat);
-            newCat.transform.position = transform.position;
-            NetworkServer.Spawn(newCat);
+            CmdSpawnCat();
+            
         }
-	
 	}
+    
+    [Command]
+    void CmdSpawnCat()
+    {
+        GameObject newCat = (GameObject)Instantiate(cat);
+        newCat.transform.position = transform.position;
+        NetworkServer.Spawn(newCat);
+    }
 }
