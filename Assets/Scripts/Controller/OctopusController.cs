@@ -21,6 +21,7 @@ public class OctopusController : NetworkBehaviour {
 	void Update () {
         if (!isLocalPlayer)
             return;
+
         ArmMotor();
         for(int f1=0; f1<transform.childCount; f1++)
         {
