@@ -11,5 +11,9 @@ public class NetworkLobbyHook : LobbyHook
         Debug.Log(gamePlayer);
 
         LobbyPlayer lobby = lobbyPlayer.GetComponent<LobbyPlayer>();
+        OctopusController octopus = gamePlayer.GetComponent<OctopusController>();
+
+        octopus.BodyColor = lobby.playerColor;
+        octopus.CustomName = lobby.name;
     }
 }
